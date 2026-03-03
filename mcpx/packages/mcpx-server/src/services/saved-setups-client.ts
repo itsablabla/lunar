@@ -8,9 +8,37 @@ import {
 } from "@mcpx/webapp-protocol/messages";
 import { Logger } from "winston";
 import { z } from "zod/v4";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { randomUUID } from "crypto";
 
 export interface SavedSetupsSocket {
   emitWithAck(event: string, envelope: unknown): Promise<unknown>;
+}
+
+// Local file-based fallback for saved setups when Hub is not connected
+const LOCAL_SETUPS_PATH = "/tmp/mcpx-saved-setups.json";
+
+interface LocalSetup {
+  id: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  [key: string]: unknown;
+}
+
+function readLocalSetups(): LocalSetup[] {
+  try {
+    if (existsSync(LOCAL_SETUPS_PATH)) {
+      return JSON.parse(readFileSync(LOCAL_SETUPS_PATH, "utf-8"));
+    }
+  } catch {
+    // ignore read errors
+  }
+  return [];
+}
+
+function writeLocalSetups(setups: LocalSetup[]): void {
+  writeFileSync(LOCAL_SETUPS_PATH, JSON.stringify(setups, null, 2), "utf-8");
 }
 
 export class SavedSetupsClient {
@@ -28,7 +56,19 @@ export class SavedSetupsClient {
   ): Promise<z.infer<typeof saveSetupAckSchema>> {
     const socket = this.getSocket();
     if (!socket) {
-      return { success: false, error: "Not connected to Hub" };
+      // Local fallback: save to file
+      this.logger.info("Hub not connected — saving setup locally", { description: payload.description });
+      const setups = readLocalSetups();
+      const newSetup: LocalSetup = {
+        id: randomUUID(),
+        description: payload.description ?? "Untitled setup",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        ...payload,
+      };
+      setups.push(newSetup);
+      writeLocalSetups(setups);
+      return { success: true, savedSetupId: newSetup.id, description: newSetup.description, savedAt: newSetup.createdAt };
     }
     const envelope = wrapInEnvelope({ payload });
     this.logger.debug("Sending save-setup to Hub", {
@@ -49,7 +89,10 @@ export class SavedSetupsClient {
   async listSavedSetups(): Promise<z.infer<typeof listSavedSetupsAckSchema>> {
     const socket = this.getSocket();
     if (!socket) {
-      return { setups: [] };
+      // Local fallback: read from file
+      const setups = readLocalSetups();
+      this.logger.info("Hub not connected — listing local setups", { count: setups.length });
+      return { setups: setups as unknown as z.infer<typeof listSavedSetupsAckSchema>["setups"] };
     }
     const envelope = wrapInEnvelope({ payload: {} });
     this.logger.debug("Sending list-saved-setups to Hub");
@@ -70,7 +113,16 @@ export class SavedSetupsClient {
   ): Promise<z.infer<typeof deleteSavedSetupAckSchema>> {
     const socket = this.getSocket();
     if (!socket) {
-      return { success: false, error: "Not connected to Hub" };
+      // Local fallback: delete from file
+      const setups = readLocalSetups();
+      const idx = setups.findIndex((s) => s.id === savedSetupId);
+      if (idx === -1) {
+        return { success: false, error: "Not found", errorCode: "not_found" };
+      }
+      setups.splice(idx, 1);
+      writeLocalSetups(setups);
+      this.logger.info("Hub not connected — deleted local setup", { savedSetupId });
+      return { success: true, savedAt: new Date().toISOString() };
     }
     const envelope = wrapInEnvelope({ payload: { savedSetupId } });
     this.logger.debug("Sending delete-saved-setup to Hub", { savedSetupId });
@@ -91,7 +143,16 @@ export class SavedSetupsClient {
   ): Promise<z.infer<typeof updateSavedSetupAckSchema>> {
     const socket = this.getSocket();
     if (!socket) {
-      return { success: false, error: "Not connected to Hub" };
+      // Local fallback: update in file
+      const setups = readLocalSetups();
+      const idx = setups.findIndex((s) => s.id === payload.savedSetupId);
+      if (idx === -1) {
+        return { success: false, error: "Not found", errorCode: "not_found" };
+      }
+      setups[idx] = { ...setups[idx], ...payload, updatedAt: new Date().toISOString() };
+      writeLocalSetups(setups);
+      this.logger.info("Hub not connected — updated local setup", { savedSetupId: payload.savedSetupId });
+      return { success: true, savedAt: new Date().toISOString() };
     }
     const envelope = wrapInEnvelope({ payload });
     this.logger.debug("Sending update-saved-setup to Hub", {
