@@ -1,0 +1,12 @@
+{
+  "VITE_MCPX_SERVER_URL": "https://mcpx-production-e218.up.railway.app",
+  "VITE_MCPX_SERVER_PORT": "9000",
+  "VITE_ENABLE_LOGIN": "false",
+  "VITE_ENABLE_ENTERPRISE": "false",
+  "VITE_ENABLE_PERMISSIONS": "false",
+  "VITE_ENABLE_SAVED_SETUPS": "true",
+  "VITE_ENABLE_DYNAMIC_CAPABILITIES": "true",
+  "VITE_AUTH0_DOMAIN": "",
+  "VITE_AUTH0_CLIENT_ID": "",
+  "VITE_AUTH0_AUDIENCE": "mcpx-webapp"
+}
