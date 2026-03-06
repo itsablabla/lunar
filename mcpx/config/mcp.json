@@ -13,6 +13,12 @@
       },
       "icon": "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
       "description": "Linux workbench — exec shell commands, read/write files, run code in isolated containers"
+    },
+    "pipedream": {
+      "type": "streamable-http",
+      "url": "https://primary-production-f10f7.up.railway.app/mcp/mcp-pd-connect",
+      "icon": "https://pipedream.com/s.v2/app/svg/pipedream.svg",
+      "description": "Pipedream Connect — run actions across 2,000+ apps (Slack, Gmail, Notion, GitHub, Linear, HubSpot, etc.) on behalf of jaden-garza"
     }
   }
 }
