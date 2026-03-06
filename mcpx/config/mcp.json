@@ -19,6 +19,15 @@
       "url": "https://primary-production-f10f7.up.railway.app/mcp/mcp-pd-connect",
       "icon": "https://pipedream.com/s.v2/app/svg/pipedream.svg",
       "description": "Pipedream Connect — run actions across 2,000+ apps (Slack, Gmail, Notion, GitHub, Linear, HubSpot, etc.) on behalf of jaden-garza"
+    },
+    "beeper": {
+      "type": "streamable-http",
+      "url": "https://beeper-mcp-server-production.up.railway.app/",
+      "headers": {
+        "Authorization": "Bearer ce43b205-2269-4f3c-bc3d-b1ef6973d4d7"
+      },
+      "icon": "https://www.beeper.com/favicon.ico",
+      "description": "Beeper universal inbox — search, read, and send messages across all connected networks (iMessage, WhatsApp, Telegram, Signal, etc.)"
     }
   }
 }
