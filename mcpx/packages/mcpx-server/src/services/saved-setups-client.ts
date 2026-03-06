@@ -60,11 +60,11 @@ export class SavedSetupsClient {
       this.logger.info("Hub not connected — saving setup locally", { description: payload.description });
       const setups = readLocalSetups();
       const newSetup: LocalSetup = {
+        ...payload,
         id: randomUUID(),
         description: payload.description ?? "Untitled setup",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        ...payload,
       };
       setups.push(newSetup);
       writeLocalSetups(setups);
@@ -122,7 +122,7 @@ export class SavedSetupsClient {
       setups.splice(idx, 1);
       writeLocalSetups(setups);
       this.logger.info("Hub not connected — deleted local setup", { savedSetupId });
-      return { success: true, savedAt: new Date().toISOString() };
+      return { success: true };
     }
     const envelope = wrapInEnvelope({ payload: { savedSetupId } });
     this.logger.debug("Sending delete-saved-setup to Hub", { savedSetupId });
@@ -149,7 +149,8 @@ export class SavedSetupsClient {
       if (idx === -1) {
         return { success: false, error: "Not found", errorCode: "not_found" };
       }
-      setups[idx] = { ...setups[idx], ...payload, updatedAt: new Date().toISOString() };
+      const existing = setups[idx];
+      setups[idx] = { ...existing, ...(payload as Partial<LocalSetup>), id: existing.id, updatedAt: new Date().toISOString() };
       writeLocalSetups(setups);
       this.logger.info("Hub not connected — updated local setup", { savedSetupId: payload.savedSetupId });
       return { success: true, savedAt: new Date().toISOString() };
