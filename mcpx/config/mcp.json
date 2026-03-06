@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "telegram": {
+      "type": "streamable-http",
+      "url": "https://telegram-mcp-v2.vercel.app/mcp",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+    }
+  }
+}
