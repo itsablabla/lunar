@@ -149,8 +149,17 @@ export class SavedSetupsClient {
       if (idx === -1) {
         return { success: false, error: "Not found", errorCode: "not_found" };
       }
-      const existing = setups[idx];
-      setups[idx] = { ...existing, ...(payload as Partial<LocalSetup>), id: existing.id, updatedAt: new Date().toISOString() };
+      const existing = setups[idx]!;
+      const payloadPartial = payload as Record<string, unknown>;
+      const updated: LocalSetup = {
+        ...existing,
+        ...payloadPartial,
+        id: existing.id,
+        description: (typeof payloadPartial["description"] === "string" ? payloadPartial["description"] : existing.description),
+        createdAt: existing.createdAt,
+        updatedAt: new Date().toISOString(),
+      };
+      setups[idx] = updated;
       writeLocalSetups(setups);
       this.logger.info("Hub not connected — updated local setup", { savedSetupId: payload.savedSetupId });
       return { success: true, savedAt: new Date().toISOString() };
