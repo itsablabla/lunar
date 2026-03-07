@@ -43,10 +43,16 @@ function readLocalSetups(): LocalSetup[] {
 function writeLocalSetups(setups: LocalSetup[]): void {
   // Ensure the directory exists (important when using a persistent volume mount path)
   const dir = dirname(LOCAL_SETUPS_PATH);
+  let targetPath = LOCAL_SETUPS_PATH;
   if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
+    try {
+      mkdirSync(dir, { recursive: true });
+    } catch {
+      // Directory creation failed (e.g. no volume mounted yet) — fall back to /tmp
+      targetPath = "/tmp/mcpx-saved-setups.json";
+    }
   }
-  writeFileSync(LOCAL_SETUPS_PATH, JSON.stringify(setups, null, 2), "utf-8");
+  writeFileSync(targetPath, JSON.stringify(setups, null, 2), "utf-8");
 }
 
 export class SavedSetupsClient {
