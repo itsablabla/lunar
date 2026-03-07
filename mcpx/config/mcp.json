@@ -12,7 +12,7 @@
         "X-API-Key": "${WORKBENCH_API_KEY}"
       },
       "icon": "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
-      "description": "Linux workbench — exec shell commands, read/write files, run code in isolated containers"
+      "description": "Linux workbench \u2014 exec shell commands, read/write files, run code in isolated containers"
     },
     "beeper": {
       "type": "streamable-http",
@@ -21,7 +21,7 @@
         "Authorization": "Bearer ${BEEPER_BEARER_TOKEN}"
       },
       "icon": "https://www.beeper.com/favicon.ico",
-      "description": "Beeper universal inbox — search, read, and send messages across all connected networks (iMessage, WhatsApp, Telegram, Signal, etc.)"
+      "description": "Beeper universal inbox \u2014 search, read, and send messages across all connected networks (iMessage, WhatsApp, Telegram, Signal, etc.)"
     },
     "dart": {
       "type": "streamable-http",
@@ -30,7 +30,7 @@
         "Authorization": "Bearer ${DART_API_TOKEN}"
       },
       "icon": "https://app.dartai.com/favicon.ico",
-      "description": "Dart — task management, dartboards, docs, and project tracking"
+      "description": "Dart \u2014 task management, dartboards, docs, and project tracking"
     },
     "nango-vercel": {
       "type": "streamable-http",
@@ -41,7 +41,7 @@
         "provider-config-key": "vercel"
       },
       "icon": "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico",
-      "description": "Vercel — list projects, deployments, domains, and trigger redeploys via Nango"
+      "description": "Vercel \u2014 list projects, deployments, domains, and trigger redeploys via Nango"
     },
     "nango-sentry": {
       "type": "streamable-http",
@@ -52,7 +52,7 @@
         "provider-config-key": "sentry"
       },
       "icon": "https://sentry.io/favicon.ico",
-      "description": "Sentry — list projects, issues, events, and resolve errors via Nango"
+      "description": "Sentry \u2014 list projects, issues, events, and resolve errors via Nango"
     },
     "nango-google-drive": {
       "type": "streamable-http",
@@ -63,7 +63,7 @@
         "provider-config-key": "google-drive"
       },
       "icon": "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png",
-      "description": "Google Drive — list, search, upload, and organize files via Nango"
+      "description": "Google Drive \u2014 list, search, upload, and organize files via Nango"
     },
     "nango-google-sheets": {
       "type": "streamable-http",
@@ -74,7 +74,7 @@
         "provider-config-key": "google-sheet"
       },
       "icon": "https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico",
-      "description": "Google Sheets — list spreadsheets, read/write cells, and append rows via Nango"
+      "description": "Google Sheets \u2014 list spreadsheets, read/write cells, and append rows via Nango"
     },
     "nango-dropbox": {
       "type": "streamable-http",
@@ -85,7 +85,7 @@
         "provider-config-key": "dropbox"
       },
       "icon": "https://www.dropbox.com/static/images/icons/favicon.ico",
-      "description": "Dropbox — list folders, search files, get links, and move files via Nango"
+      "description": "Dropbox \u2014 list folders, search files, get links, and move files via Nango"
     },
     "nango-github": {
       "type": "streamable-http",
@@ -96,7 +96,7 @@
         "provider-config-key": "github-token"
       },
       "icon": "https://github.com/favicon.ico",
-      "description": "GitHub — list repos, issues, PRs, create issues via Nango"
+      "description": "GitHub \u2014 list repos, issues, PRs, create issues via Nango"
     },
     "nango-cloudflare": {
       "type": "streamable-http",
@@ -107,7 +107,7 @@
         "provider-config-key": "cloudflare"
       },
       "icon": "https://www.cloudflare.com/favicon.ico",
-      "description": "Cloudflare — list zones, workers, KV namespaces, R2 buckets, and purge cache via Nango"
+      "description": "Cloudflare \u2014 list zones, workers, KV namespaces, R2 buckets, and purge cache via Nango"
     },
     "nango-fireflies": {
       "type": "streamable-http",
@@ -118,7 +118,7 @@
         "provider-config-key": "fireflies"
       },
       "icon": "https://fireflies.ai/favicon.ico",
-      "description": "Fireflies — list, search, and retrieve meeting transcripts via Nango"
+      "description": "Fireflies \u2014 list, search, and retrieve meeting transcripts via Nango"
     },
     "nango-jotform": {
       "type": "streamable-http",
@@ -129,7 +129,19 @@
         "provider-config-key": "jotform"
       },
       "icon": "https://www.jotform.com/favicon.ico",
-      "description": "Jotform — list forms, get submissions, and retrieve form details via Nango"
+      "description": "Jotform \u2014 list forms, get submissions, and retrieve form details via Nango"
+    },
+    "osxphotos": {
+      "type": "sse",
+      "url": "https://photos-mcp.garzahive.com/sse",
+      "icon": "https://www.apple.com/favicon.ico",
+      "description": "Apple Photos on Omnara Mac Mini M4 \u2014 list albums, persons, keywords, labels, places, query/export photos, and manage the Photos library"
+    },
+    "nango-management": {
+      "type": "streamable-http",
+      "url": "https://nango-mcp-proxy-vercel.vercel.app",
+      "icon": "https://nango.dev/favicon.ico",
+      "description": "Nango management \u2014 create/list/delete integrations and connections programmatically"
     }
   }
 }
