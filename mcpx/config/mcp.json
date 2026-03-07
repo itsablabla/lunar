@@ -23,72 +23,6 @@
       "icon": "https://www.beeper.com/favicon.ico",
       "description": "Beeper universal inbox — search, read, and send messages across all connected networks (iMessage, WhatsApp, Telegram, Signal, etc.)"
     },
-    "nango-vercel": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "vercel"
-      },
-      "icon": "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico",
-      "description": "Vercel — manage deployments, projects, domains, and logs via Nango"
-    },
-    "nango-sentry": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "sentry"
-      },
-      "icon": "https://sentry.io/favicon.ico",
-      "description": "Sentry — error monitoring, issue tracking, and performance analysis via Nango"
-    },
-    "nango-google-sheets": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "google-sheet"
-      },
-      "icon": "https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico",
-      "description": "Google Sheets — read, write, and manage spreadsheets via Nango"
-    },
-    "nango-dropbox": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "dropbox"
-      },
-      "icon": "https://www.dropbox.com/static/images/icons/favicon.ico",
-      "description": "Dropbox — file storage and management via Nango"
-    },
-    "nango-github": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "github-token"
-      },
-      "icon": "https://github.com/favicon.ico",
-      "description": "GitHub — repositories, issues, PRs, and code management via Nango"
-    },
-    "nango-cloudflare": {
-      "type": "streamable-http",
-      "url": "https://api.nango.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
-        "connection-id": "jaden-garza",
-        "provider-config-key": "cloudflare"
-      },
-      "icon": "https://www.cloudflare.com/favicon.ico",
-      "description": "Cloudflare — DNS, Workers, R2, D1, and security management via Nango"
-    },
     "dart": {
       "type": "streamable-http",
       "url": "https://mcp.dartai.com/mcp",
@@ -97,6 +31,28 @@
       },
       "icon": "https://app.dartai.com/favicon.ico",
       "description": "Dart — task management, dartboards, docs, and project tracking"
+    },
+    "nango-vercel": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-vercel",
+        "provider-config-key": "vercel"
+      },
+      "icon": "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico",
+      "description": "Vercel — list projects, deployments, domains, and trigger redeploys via Nango"
+    },
+    "nango-sentry": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-sentry",
+        "provider-config-key": "sentry"
+      },
+      "icon": "https://sentry.io/favicon.ico",
+      "description": "Sentry — list projects, issues, events, and resolve errors via Nango"
     },
     "nango-google-drive": {
       "type": "streamable-http",
@@ -107,7 +63,73 @@
         "provider-config-key": "google-drive"
       },
       "icon": "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png",
-      "description": "Google Drive — file search, upload, download, and organization via Nango"
+      "description": "Google Drive — list, search, upload, and organize files via Nango"
+    },
+    "nango-google-sheets": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-garza",
+        "provider-config-key": "google-sheet"
+      },
+      "icon": "https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico",
+      "description": "Google Sheets — list spreadsheets, read/write cells, and append rows via Nango"
+    },
+    "nango-dropbox": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-garza",
+        "provider-config-key": "dropbox"
+      },
+      "icon": "https://www.dropbox.com/static/images/icons/favicon.ico",
+      "description": "Dropbox — list folders, search files, get links, and move files via Nango"
+    },
+    "nango-github": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-github",
+        "provider-config-key": "github-token"
+      },
+      "icon": "https://github.com/favicon.ico",
+      "description": "GitHub — list repos, issues, PRs, create issues via Nango"
+    },
+    "nango-cloudflare": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-cloudflare",
+        "provider-config-key": "cloudflare"
+      },
+      "icon": "https://www.cloudflare.com/favicon.ico",
+      "description": "Cloudflare — list zones, workers, KV namespaces, R2 buckets, and purge cache via Nango"
+    },
+    "nango-fireflies": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-garza",
+        "provider-config-key": "fireflies"
+      },
+      "icon": "https://fireflies.ai/favicon.ico",
+      "description": "Fireflies — list, search, and retrieve meeting transcripts via Nango"
+    },
+    "nango-jotform": {
+      "type": "streamable-http",
+      "url": "https://api.nango.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NANGO_MCP_TOKEN}",
+        "connection-id": "jaden-garza",
+        "provider-config-key": "jotform"
+      },
+      "icon": "https://www.jotform.com/favicon.ico",
+      "description": "Jotform — list forms, get submissions, and retrieve form details via Nango"
     }
   }
 }
