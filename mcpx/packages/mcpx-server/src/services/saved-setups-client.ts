@@ -16,7 +16,9 @@ export interface SavedSetupsSocket {
 }
 
 // Local file-based fallback for saved setups when Hub is not connected
-const LOCAL_SETUPS_PATH = "/tmp/mcpx-saved-setups.json";
+// Use SAVED_SETUPS_PATH env var to point to a persistent volume (e.g. /data/mcpx-saved-setups.json)
+// Defaults to /tmp which is ephemeral — configure a Railway volume for persistence across restarts
+const LOCAL_SETUPS_PATH = process.env["SAVED_SETUPS_PATH"] ?? "/tmp/mcpx-saved-setups.json";
 
 interface LocalSetup {
   id: string;

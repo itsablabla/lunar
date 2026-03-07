@@ -291,44 +291,6 @@ export function buildControlPlaneRouter(
     }
   });
 
-  // In deprecation, use PUT config/target-server/:name/activate
-  router.put("/target-server/:name/activate", authGuard, async (req, res) => {
-    const name = req.params["name"];
-    if (!name) {
-      res.status(400).json({ message: "Target server name is required" });
-      return;
-    }
-    try {
-      await services.controlPlane.config.activateTargetServer(name);
-      logger.info("Activated target server", { name });
-      res.status(200).json({ message: "Target server activated successfully" });
-    } catch (e) {
-      const error = loggableError(e);
-      logger.error("Error activating target server", { error, name });
-      res.status(500).json(error);
-    }
-  });
-
-  // In deprecation, use PUT config/target-server/:name/deactivate
-  router.put("/target-server/:name/deactivate", authGuard, async (req, res) => {
-    const name = req.params["name"];
-    if (!name) {
-      res.status(400).json({ message: "Target server name is required" });
-      return;
-    }
-    try {
-      await services.controlPlane.config.deactivateTargetServer(name);
-      logger.info("Deactivated target server", { name });
-      res
-        .status(200)
-        .json({ message: "Target server deactivated successfully" });
-    } catch (e) {
-      const error = loggableError(e);
-      logger.error("Error deactivating target server", { error, name });
-      res.status(500).json(error);
-    }
-  });
-
   // In deprecation, use GET config/target-servers/attributes
   router.get("/target-servers/attributes", authGuard, async (_req, res) => {
     try {

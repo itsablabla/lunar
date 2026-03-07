@@ -1,0 +1,12 @@
+auth:
+  enabled: true
+  header: x-lunar-api-key
+permissions:
+  default:
+    _type: default-allow
+    block: []
+  consumers: {}
+toolGroups: []
+toolExtensions:
+  services: {}
+targetServerAttributes: {}

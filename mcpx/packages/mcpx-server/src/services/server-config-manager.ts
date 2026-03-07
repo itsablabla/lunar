@@ -51,7 +51,17 @@ export class ServerConfigManager {
         return [];
       }
 
-      const file = fs.readFileSync(this.configPath, "utf8");
+      const rawFile = fs.readFileSync(this.configPath, "utf8");
+
+      // Interpolate environment variables in the format ${VAR_NAME}
+      const file = rawFile.replace(/\$\{([^}]+)\}/g, (_, varName) => {
+        const value = process.env[varName];
+        if (value === undefined) {
+          this.logger.warn(`Environment variable "${varName}" referenced in config but not set`, { configPath: this.configPath });
+          return ``;
+        }
+        return value;
+      });
 
       // Check if file content is empty or only contains whitespace/newlines
       if (!file || file.trim().length === 0) {
