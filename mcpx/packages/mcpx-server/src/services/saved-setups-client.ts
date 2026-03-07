@@ -8,7 +8,8 @@ import {
 } from "@mcpx/webapp-protocol/messages";
 import { Logger } from "winston";
 import { z } from "zod/v4";
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { dirname } from "path";
 import { randomUUID } from "crypto";
 
 export interface SavedSetupsSocket {
@@ -40,6 +41,11 @@ function readLocalSetups(): LocalSetup[] {
 }
 
 function writeLocalSetups(setups: LocalSetup[]): void {
+  // Ensure the directory exists (important when using a persistent volume mount path)
+  const dir = dirname(LOCAL_SETUPS_PATH);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
   writeFileSync(LOCAL_SETUPS_PATH, JSON.stringify(setups, null, 2), "utf-8");
 }
 
