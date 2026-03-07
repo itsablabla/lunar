@@ -89,6 +89,15 @@
       "icon": "https://www.cloudflare.com/favicon.ico",
       "description": "Cloudflare — DNS, Workers, R2, D1, and security management via Nango"
     },
+    "dart": {
+      "type": "streamable-http",
+      "url": "https://mcp.dartai.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${DART_API_TOKEN}"
+      },
+      "icon": "https://app.dartai.com/favicon.ico",
+      "description": "Dart — task management, dartboards, docs, and project tracking"
+    },
     "nango-google-drive": {
       "type": "streamable-http",
       "url": "https://api.nango.dev/mcp",
