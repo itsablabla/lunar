@@ -207,6 +207,9 @@ COPY --from=builder --chown=${LUNAR_USER}:${SHARED_GROUP_NAME} /mcpx/packages/we
 # Copy mcpx-server built files and dependencies
 COPY --from=builder --chown=${LUNAR_USER}:${SHARED_GROUP_NAME} /mcpx/packages/mcpx-server/dist/src packages/mcpx-server/dist
 COPY --from=builder --chown=${LUNAR_USER}:${SHARED_GROUP_NAME} /mcpx/packages/mcpx-server/package.json packages/mcpx-server/package.json
+# Copy server config (mcp.json with MCP server definitions, app.yaml with runtime config)
+# Without this, the container starts with zero MCP servers loaded on every deploy
+COPY --chown=${LUNAR_USER}:${SHARED_GROUP_NAME} ./config packages/mcpx-server/config
 
 
 # Copy UI package
