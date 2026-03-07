@@ -226,6 +226,8 @@ COPY --from=base --chown=${LUNAR_USER_SHARED_GROUP} ${HOME}/packages/mcpx-server
 COPY --from=base --chown=${LUNAR_USER_SHARED_GROUP} ${HOME}/packages/mcpx-server/package.json packages/mcpx-server/package.json
 COPY --from=base --chown=${LUNAR_USER_SHARED_GROUP} ${HOME}/node_modules node_modules
 COPY --from=base --chown=${LUNAR_USER_SHARED_GROUP} ${HOME}/rootfs /
+# Copy server config (mcp.json + app.yaml) so servers load on startup and auth persists across redeploys
+COPY --chown=${LUNAR_USER_SHARED_GROUP} ./config packages/mcpx-server/config
 
 EXPOSE ${MCPX_PORT} ${SERVE_METRICS_PORT}
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
